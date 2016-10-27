@@ -1,0 +1,23 @@
+{
+  "name": "av-async-voter",
+  "version": "1.0.0",
+  "description": "ReST API for casting votes on user stories, built a la TDD",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "config": "^1.21.0",
+    "express": "^4.14.0",
+    "mongoose": "^4.6.5",
+    "morgan": "^1.7.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.1.2",
+    "nodemon": "^1.11.0"
+  },
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "mocha"
+  }
+}
