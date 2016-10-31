@@ -1,31 +1,19 @@
-// Import the required packages
+// Import required packages
 let express = require('express');
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 let morgan = require('morgan');
-let Stories = require('./routes/stories');
-// load corresponsing DB from files in this dir
+let Stories = require(process.cwd() + '/routes/stories');
 let config = require('config');
 
-// DB options
-let options = {
-  server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 5000 }
-  },
-  replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 5000 }
-  }
-};
-
 // DB connection
-mongoose.connect(config.DBHost, options);
-let DB = mongoose.connection;
-DB.on('error', console.error.bind(console, 'DB Connection error: '));
+mongoose.connect(config.DBHost, config.DBOPTIONS);
+mongoose.connection.on('error', console.error.bind(console, 'DB Connection error: '));
 
 // Create the Express application
 let app = express();
-// Listen on 'PORT' if set, else on 8000
-let port = process.env.PORT || 8000;
 
-// don't log while 'NODE_ENV' is set to test
+// don't log if 'NODE_ENV' is test
 if( process.env.NODE_ENV !== 'test' ) {
   //use morgan for logging
   app.use(morgan('combined')); // write logs in Apache style
@@ -48,7 +36,7 @@ app.route("/stories/:id")
   .put(Stories.updateStory)
   .delete(Stories.deleteStory);
 
-app.listen(port);
-console.log("Listening on port " + port);
+app.listen(config.PORT);
+console.log("Listening on port " + config.PORT);
 
 module.exports = app; // for testing

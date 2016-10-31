@@ -1,0 +1,18 @@
+{
+  "PORT": 3000,
+  "DBHost": "mongodb://localhost/av-async-voter",
+  "DBOPTIONS": {
+    "server": {
+       "socketOptions": {
+         "keepAlive": 1,
+         "connectTimeoutMS": 5000
+       }
+    },
+    "replset": {
+      "socketOptions": {
+        "keepAlive": 1,
+        "connectTimeoutMS" : 5000
+      }
+    }
+  }
+}

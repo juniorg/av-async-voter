@@ -1,6 +1,6 @@
 // Import the required packages
 let mongoose = require('mongoose');
-let Story = require('../model/story');
+let Story = require(process.cwd() + '/model/story');
 
 // Route "POST /stories" - saves a new story.
 function postStory(req, res) {

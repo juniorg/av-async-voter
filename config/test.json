@@ -1,0 +1,4 @@
+{
+  "PORT": 8000,
+  "DBHost": "mongodb://localhost/av-async-voter-test"
+}
